@@ -1,23 +1,21 @@
 package examples;
 
+import general.TestShopScenario;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * Created by Gerry on 19/07/2017.
  */
-public class FirstSeleniumTest {
+public class FirstSeleniumTest extends TestShopScenario {
 
     @Test
     public void logInSuccesFull() {
-        ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("https://techblog.polteq.com/testshop/index.php");
 
         driver.findElement(By.className("login")).click();
 
@@ -32,9 +30,6 @@ public class FirstSeleniumTest {
         textmyaccount = driver.findElement(By.id("my-account")).getText();
 
         Assertions.assertThat(textmyaccount).as("tekst op login pagina").contains(controletekst);
-
-        driver.quit();
-
     }
 
 }
